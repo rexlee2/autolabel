@@ -1,0 +1,30 @@
+csrt_params:
+  use_hog: true
+  use_color_names: true
+  use_gray: true
+  use_rgb: true
+  use_channel_weights: true
+  use_segmentation: true
+
+  # Tighter, less drift
+  filter_lr: 0.025
+  weights_lr: 0.025
+  padding: 2.8
+
+  admm_iterations: 18
+
+  histogram_bins: 48
+  background_ratio: 2
+  histogram_lr: 0.09
+
+  # Conservative, precise scale adaptation
+  scale_sigma_factor: 0.20
+  scale_model_max_area: 6000
+  number_of_scales: 61
+  use_estimate_scale: true
+  use_multiscale_estimation: true
+  scale_lr: 0.22
+  scale_step: 1.04
+
+  # Stricter quality threshold
+  psr_threshold: 0.055
