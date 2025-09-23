@@ -137,6 +137,7 @@ I -1 -1 -1 -1      # Invisible: I -1 -1 -1 -1
 - DPI awareness for high-resolution displays
 - Graceful fallback to manual labeling if tracker fails
 - Fills incomplete annotations with "Skips" so that it can be completed later  
+- GrabCut-based bounding box refinement for tighter boxes 
 
 
 ## Configuration
@@ -154,6 +155,20 @@ Tune the three key parameters first for given video:
 - **Higher filter_lr**: Faster adaptation, less stable
 - **Lower psr_threshold**: More permissive tracking
 - **More scales**: Better scale handling, slower performance
+
+### GrabCut Refinement
+
+Optional post-update refinement to tighten the bounding box around foreground. Configure in `autolabel/tracker.yaml`:
+
+```yaml
+grabcut:
+  enable: true          # Toggle refinement on/off
+  enlarge_ratio: 0.15   # Expand initial box by this fraction before GrabCut
+  margin_ratio: 0.02    # Extra padding as fraction of image height around the tight FG box
+  iters: 5              # Number of GrabCut iterations
+```
+
+Set `enable: false` to disable refinement. Tune `enlarge_ratio` and `margin_ratio` based on object size and image resolution.
 
 
 ## Known Limitations

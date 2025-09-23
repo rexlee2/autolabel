@@ -28,3 +28,18 @@ csrt_params:
 
   # Stricter quality threshold
   psr_threshold: 0.055
+
+grabcut:
+  # Enable or disable GrabCut-based refinement after CSRT update
+  enable: true
+
+  # Expand the current bbox by this ratio around its center before GrabCut
+  # Example: 0.15 => increase width/height by +15%
+  enlarge_ratio: 0.15
+
+  # Add this margin (as a fraction of full image height) around the tight FG box
+  # Example: 0.01 => ±1% of image height on each side
+  margin_ratio: 0.01
+
+  # Number of GrabCut iterations
+  iters: 3
